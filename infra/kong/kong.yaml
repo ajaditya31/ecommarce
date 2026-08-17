@@ -1,0 +1,123 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+
+  # ── Catalog Service ──────────────────────────────────────────────────────────
+  - name: catalog-service
+    url: http://catalog-service:3000
+    connect_timeout: 5000
+    read_timeout: 60000
+    write_timeout: 60000
+    routes:
+      - name: catalog-health
+        paths:
+          - /health
+        methods: [GET]
+        strip_path: false
+
+      - name: catalog-root
+        paths:
+          - /catalog
+        methods: [GET]
+        strip_path: true
+
+  # ── Product Service ──────────────────────────────────────────────────────────
+  - name: product-service
+    url: http://product-service:3001
+    connect_timeout: 5000
+    read_timeout: 60000
+    write_timeout: 60000
+    routes:
+      - name: products-route
+        paths:
+          - /products
+        methods: [GET, POST, PUT, DELETE, PATCH]
+        strip_path: false
+
+      - name: product-health
+        paths:
+          - /products/health
+        methods: [GET]
+        strip_path: false
+
+  # ── Cart Service ─────────────────────────────────────────────────────────────
+  - name: cart-service
+    url: http://cart-service:3003
+    connect_timeout: 5000
+    read_timeout: 60000
+    write_timeout: 60000
+    routes:
+      - name: carts-route
+        paths:
+          - /carts
+        methods: [GET, POST, PUT, DELETE, PATCH]
+        strip_path: false
+
+  # ── Order Service ─────────────────────────────────────────────────────────────
+  - name: order-service
+    url: http://order-service:3004
+    connect_timeout: 5000
+    read_timeout: 60000
+    write_timeout: 60000
+    routes:
+      - name: orders-route
+        paths:
+          - /orders
+        methods: [GET, POST, PUT, DELETE, PATCH]
+        strip_path: false
+
+  # ── Payment Service ───────────────────────────────────────────────────────────
+  - name: payment-service
+    url: http://payment-service:3005
+    connect_timeout: 5000
+    read_timeout: 60000
+    write_timeout: 60000
+    routes:
+      - name: payments-route
+        paths:
+          - /payments
+        methods: [GET, POST, PUT, DELETE, PATCH]
+        strip_path: false
+
+  # ── Seller Service ────────────────────────────────────────────────────────────
+  - name: seller-service
+    url: http://seller-service:3006
+    connect_timeout: 5000
+    read_timeout: 60000
+    write_timeout: 60000
+    routes:
+      - name: sellers-route
+        paths:
+          - /sellers
+        methods: [GET, POST, PUT, DELETE, PATCH]
+        strip_path: false
+
+plugins:
+  # Rate limiting — 100 req/min per IP across all services
+  - name: rate-limiting
+    config:
+      minute: 100
+      policy: local
+
+  # CORS — allow local frontend dev server
+  - name: cors
+    config:
+      origins:
+        - "http://localhost:3000"
+        - "http://localhost:3001"
+      methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - PATCH
+        - OPTIONS
+      headers:
+        - Accept
+        - Authorization
+        - Content-Type
+      exposed_headers:
+        - X-Auth-Token
+      credentials: true
+      max_age: 3600
