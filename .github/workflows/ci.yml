@@ -1,0 +1,119 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Lint & Build – catalog-service
+  # ─────────────────────────────────────────────────────────────────────────────
+  catalog-service:
+    name: catalog-service — lint & build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/catalog-service
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: services/catalog-service/package.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test:run
+
+      - name: Docker build (verify image builds)
+        uses: docker/build-push-action@v5
+        with:
+          context: services/catalog-service
+          push: false
+          tags: catalog-service:ci
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Lint & Build – product-service
+  # ─────────────────────────────────────────────────────────────────────────────
+  product-service:
+    name: product-service — lint & build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/product-service
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: services/product-service/package.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test:run
+
+      - name: Docker build (verify image builds)
+        uses: docker/build-push-action@v5
+        with:
+          context: services/product-service
+          push: false
+          tags: product-service:ci
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Security scan
+  # ─────────────────────────────────────────────────────────────────────────────
+  security-scan:
+    name: Security — Trivy container scan
+    runs-on: ubuntu-latest
+    needs: [catalog-service, product-service]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build catalog image for scanning
+        run: docker build -t catalog-service:scan services/catalog-service
+
+      - name: Build product image for scanning
+        run: docker build -t product-service:scan services/product-service
+
+      - name: Trivy scan — catalog-service
+        uses: aquasecurity/trivy-action@0.23.0
+        with:
+          image-ref: catalog-service:scan
+          format: table
+          exit-code: "0"          # warn only in early phase; set to 1 for blocking
+          severity: CRITICAL,HIGH
+
+      - name: Trivy scan — product-service
+        uses: aquasecurity/trivy-action@0.23.0
+        with:
+          image-ref: product-service:scan
+          format: table
+          exit-code: "0"
+          severity: CRITICAL,HIGH

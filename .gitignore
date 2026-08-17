@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+.next/
+coverage/
+
+services/*/node_modules/
+services/*/dist/
+dist
+node_modules
