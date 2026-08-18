@@ -169,7 +169,7 @@ Create a robust, multi‑vendor e‑commerce system that can be extended with mo
 ---
 ### Phase 1 – Foundations & Architecture
 - **Create repo structure** (monorepo with `frontend/`, `services/`, `infra/`).
-- **Initialize Docker Compose** for local dev (frontend, API Gateway, PostgreSQL, Redis, Kafka, Elasticsearch).
+- **Initialize Docker Compose** for local dev (frontend, API Gateway, PostgreSQL, Redis, Kafka, Elasticsearch).  
 - **Set up CI pipeline** (GitHub Actions) to lint, test, and build Docker images.
 - **Deploy a minimal “Hello World” micro‑service** (e.g., `catalog-service`) exposing a health endpoint.
 - **Implement OpenAPI spec** for the service.
@@ -177,7 +177,7 @@ Create a robust, multi‑vendor e‑commerce system that can be extended with mo
 
 ### Phase 2 – Admin Feature‑Flag Service
 - **Install Unleash (self‑hosted) or configure LaunchDarkly**.
-- **Create `features` table** (as described in the design document).
+- **Create `features` table** (as described in the design document).  
 - **Build admin UI** using React‑Admin (or Laravel Nova) with toggle switches, sandbox checkbox, and credential modal.
 - **Publish `FeatureToggled` Kafka events** and add a simple consumer that logs the change.
 - **Add audit logging** to PostgreSQL.
@@ -191,13 +191,13 @@ Create a robust, multi‑vendor e‑commerce system that can be extended with mo
 
 ### Phase 4 – Customer‑Facing UI & Marketing
 - **Build responsive PWA** (Next.js) with AI recommendation placeholder.
-- **Integrate marketing automation SDKs** (Segment + Braze).
+- **Integrate marketing automation SDKs** (Segment + Braze).  
 - **Add loyalty & review modules**.
 
 ### Phase 5 – Production‑Ready Ops
-- **Migrate Docker Compose to Kubernetes** (EKS/GKE).
+- **Migrate Docker Compose to Kubernetes** (EKS/GKE).  
 - **Configure auto‑scaling, CDN, WAF, and TLS**.
-- **Set up observability stack** (Prometheus, Grafana, Loki).
+- **Set up observability stack** (Prometheus, Grafana, Loki).  
 - **Run disaster‑recovery drills**.
 ---
 

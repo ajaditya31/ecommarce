@@ -104,9 +104,9 @@
 ---
 
 ### Next actions
-1. **Add the design system folder** (`design/`) to the repo scaffold (will be generated in Phase 1).
-2. **Create a high‑fidelity mock‑up** of the homepage to visualise the design language.
-3. **Review the mock‑up** with you; iterate on colour palette or component layout if needed.
+1. **Add the design system folder** (`design/`) to the repo scaffold (will be generated in Phase 1). 
+2. **Create a high‑fidelity mock‑up** of the homepage to visualise the design language. 
+3. **Review the mock‑up** with you; iterate on colour palette or component layout if needed. 
 4. **Integrate the performance hints** (critical CSS, preconnect, font‑swap) into the Next.js `_document.js` and `_app.js` templates.
 
 Feel free to suggest any tweaks (palette adjustments, extra components, different animation easing, etc.). Once you confirm the core tech decisions, we’ll scaffold the repo and embed this design system from day one.

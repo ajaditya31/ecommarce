@@ -26,7 +26,7 @@ flowchart TD
     P --> Q[Dispute Management]
     Q --> R[Account Health Monitoring]
     R --> S[Account Closure (optional)]
-```
+``` 
 
 ---
 
@@ -52,7 +52,7 @@ flowchart TD
     P --> Q[Resolve Disputes]
     Q --> R[Seller Performance Dashboard]
     R --> S[Close Store (optional)]
-```
+``` 
 
 ---
 
@@ -76,7 +76,7 @@ flowchart TD
     N --> O[Dispute Resolution]
     O --> P[Health Metrics]
     P --> Q[Account Termination]
-```
+``` 
 
 ---
 
@@ -102,7 +102,7 @@ flowchart TD
     P --> Q[Dispute Arbitration]
     Q --> R[Performance Score]
     R --> S[Account Deactivation]
-```
+``` 
 
 ---
 
@@ -129,7 +129,7 @@ flowchart TD
     Q --> R[Dispute Management]
     R --> S[Seller Dashboard Metrics]
     S --> T[Close Store / App Uninstall]
-```
+``` 
 
 ---
 
@@ -156,7 +156,7 @@ flowchart TD
     Q --> R[Dispute Resolution]
     R --> S[Seller Performance Dashboard]
     S --> T[Account Closure]
-```
+``` 
 
 ---
 
@@ -183,7 +183,7 @@ flowchart TD
     Q --> R[Dispute Management]
     R --> S[Vendor Dashboard Metrics]
     S --> T[Deactivate Vendor Account]
-```
+``` 
 
 ---
 
@@ -209,7 +209,7 @@ flowchart TD
     P --> Q[Dispute Handling]
     Q --> R[Seller Performance Dashboard]
     R --> S[Account Termination]
-```
+``` 
 
 ---
 
@@ -235,7 +235,7 @@ flowchart TD
     P --> Q[Dispute Management]
     Q --> R[Seller Health Metrics]
     R --> S[Close Account]
-```
+``` 
 
 ---
 

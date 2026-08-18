@@ -36,7 +36,4 @@
 - `npm install` was running in background for both services when system restart was required
 - **Next session must start with:** `npm install` + `npm run build` for both services
 
-### Next session setup completed
-- Successfully ran `npm install` and `npm run build` for both `catalog-service` and `product-service`.
-
 *Further entries will be appended as milestones are achieved.*

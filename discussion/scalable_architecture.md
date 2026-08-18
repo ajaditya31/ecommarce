@@ -64,7 +64,7 @@ flowchart TB
         TF[Terraform]
         Helm[Helm Charts]
     end
-
+    
     Web --> CDN --> DNS --> GW
     Mobile --> CDN
     GW --> Auth
@@ -85,15 +85,15 @@ flowchart TB
     Search --> ES
     Flag --> DB
     Notify --> MQ
-
+    
     Kafka --> Order
     MQ --> Notify
-
+    
     GH --> TF
     TF --> AWS
     TF --> GCP
     TF --> Azure
-
+    
     Prom --> Graf
     Loki --> Graf
     OT --> Graf
@@ -113,7 +113,7 @@ flowchart TB
 ---
 
 ## 3️⃣ Scalability Strategies
-1. **Horizontal Pod Autoscaling** – K8s scales each service based on CPU/Memory and custom metrics (queue depth, request latency).
+1. **Horizontal Pod Autoscaling** – K8s scales each service based on CPU/Memory and custom metrics (queue depth, request latency). 
 2. **Stateless Containers** – Deploy multiple replicas behind the API‑gateway; session data lives in Redis, so any replica can serve any request.
 3. **Database Sharding / Read Replicas** – PostgreSQL primary for writes, read‑replicas for analytics and catalog queries. Use logical replication for multi‑region read locality.
 4. **Cache‑Aside Pattern** – Frequently accessed product data, price, and inventory are cached in Redis with TTL and invalidated via Kafka events.
@@ -144,7 +144,7 @@ GitHub Actions
 ---
 
 ## 6️⃣ Security Foundations
-- **Zero‑Trust Network** – Services communicate over mTLS via service mesh (Istio/Linkerd).
+- **Zero‑Trust Network** – Services communicate over mTLS via service mesh (Istio/Linkerd). 
 - **Secrets Management** – HashiCorp Vault or cloud‑native secret stores (AWS Secrets Manager, GCP Secret Manager) provide API keys, DB passwords, and TLS certs.
 - **WAF & DDoS Protection** – Cloud‑provider WAF in front of the API‑gateway.
 - **PCI‑DSS Compliance** – Card data never touches the DB; payment tokens are stored only in the payment provider.
@@ -187,7 +187,7 @@ The architecture is **cloud‑agnostic**, **container‑first**, and **event‑d
 - **Secure, compliant** handling of payments and personal data.
 - **Fast, repeatable delivery** with Terraform + Helm + GitHub Actions.
 
-Feel free to ask for deeper details on any component (e.g., database sharding strategy, CI/CD scripts, or specific Kubernetes manifests). All further notes will be stored under `D:\ecommarce\discussion`.
+Feel free to ask for deeper details on any component (e.g., database sharding strategy, CI/CD scripts, or specific Kubernetes manifests). All further notes will be stored under `D:\ecommarce\discussion`.   
 
 ---
 
